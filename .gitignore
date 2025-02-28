@@ -1,0 +1,37 @@
+# Dependencies
+node_modules/
+package-lock.json
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# IDE/Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# Build/Distribution
+dist/
+build/
+public/assets/*.jpg
+public/assets/*.png
+
+# Cache
+.cache/
+.npm/
+
+# Testing
+coverage/
+
+# Temporary files
+tmp/
+temp/

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Space Shooter</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div id="login-screen">
+      <div class="login-container">
+        <h1>Space Shooter</h1>
+        <div class="menu">
+          <div class="form-group">
+            <label for="player-name">Entrez votre nom:</label>
+            <input
+              type="text"
+              id="player-name"
+              maxlength="15"
+              placeholder="Votre nom"
+            />
+          </div>
+
+          <div class="faction-selection">
+            <h3>Choisissez votre faction</h3>
+            <div class="faction-options">
+              <div class="faction-option" data-faction="rebels">
+                <img
+                  src="assets/rebels-logo.svg"
+                  alt="Rebelles"
+                  class="faction-logo"
+                />
+                <h4>Alliance Rebelle</h4>
+                <p>Combattez pour la liberté et la justice dans la galaxie</p>
+              </div>
+              <div class="faction-option" data-faction="empire">
+                <img
+                  src="assets/empire-logo.svg"
+                  alt="Empire"
+                  class="faction-logo"
+                />
+                <h4>Empire Galactique</h4>
+                <p>Imposez l'ordre et la discipline à travers la galaxie</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="ship-selection" style="display: none">
+            <h3>Choisissez votre vaisseau</h3>
+            <div class="ship-options rebels-ships" style="display: none">
+              <div class="ship-option" data-ship="xwing">
+                <img src="assets/xwing.webp" alt="X-Wing" class="ship-image" />
+                <h4>X-Wing</h4>
+                <ul class="ship-stats">
+                  <li>Vitesse: ★★★☆☆</li>
+                  <li>Maniabilité: ★★★★☆</li>
+                  <li>Puissance de feu: ★★★☆☆</li>
+                </ul>
+              </div>
+              <div class="ship-option" data-ship="ywing">
+                <img src="assets/ywing.webp" alt="Y-Wing" class="ship-image" />
+                <h4>Y-Wing</h4>
+                <ul class="ship-stats">
+                  <li>Vitesse: ★★☆☆☆</li>
+                  <li>Maniabilité: ★★☆☆☆</li>
+                  <li>Puissance de feu: ★★★★★</li>
+                </ul>
+              </div>
+              <div class="ship-option" data-ship="awing">
+                <img src="assets/awing.webp" alt="A-Wing" class="ship-image" />
+                <h4>A-Wing</h4>
+                <ul class="ship-stats">
+                  <li>Vitesse: ★★★★★</li>
+                  <li>Maniabilité: ★★★★★</li>
+                  <li>Puissance de feu: ★★☆☆☆</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="ship-options empire-ships" style="display: none">
+              <div class="ship-option" data-ship="tiefighter">
+                <img
+                  src="assets/tiefighter.webp"
+                  alt="TIE Fighter"
+                  class="ship-image"
+                />
+                <h4>TIE Fighter</h4>
+                <ul class="ship-stats">
+                  <li>Vitesse: ★★★★☆</li>
+                  <li>Maniabilité: ★★★★☆</li>
+                  <li>Puissance de feu: ★★☆☆☆</li>
+                </ul>
+              </div>
+              <div class="ship-option" data-ship="tieinterceptor">
+                <img
+                  src="assets/tieinterceptor.webp"
+                  alt="TIE Interceptor"
+                  class="ship-image"
+                />
+                <h4>TIE Interceptor</h4>
+                <ul class="ship-stats">
+                  <li>Vitesse: ★★★★★</li>
+                  <li>Maniabilité: ★★★★★</li>
+                  <li>Puissance de feu: ★★★☆☆</li>
+                </ul>
+              </div>
+              <div class="ship-option" data-ship="tiebomber">
+                <img
+                  src="assets/tiebomber.webp"
+                  alt="TIE Bomber"
+                  class="ship-image"
+                />
+                <h4>TIE Bomber</h4>
+                <ul class="ship-stats">
+                  <li>Vitesse: ★★☆☆☆</li>
+                  <li>Maniabilité: ★★☆☆☆</li>
+                  <li>Puissance de feu: ★★★★★</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <button id="start-button" disabled>Commencer la partie</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="game-container" style="display: none">
+      <div id="hud">
+        <div id="health-bar">
+          <div id="health-fill"></div>
+        </div>
+        <div id="score-container">Score: <span id="score">0</span></div>
+      </div>
+      <div id="leaderboard">
+        <h3>Classement</h3>
+        <div class="team-scores">
+          <div class="team-score rebels">
+            <span class="team-name">Rebelles:</span>
+            <span class="team-points">0</span>
+          </div>
+          <div class="team-score empire">
+            <span class="team-name">Empire:</span>
+            <span class="team-points">0</span>
+          </div>
+        </div>
+        <h4>Joueurs</h4>
+        <div id="leaderboard-entries"></div>
+      </div>
+      <div id="kill-feed"></div>
+      <canvas id="game-canvas"></canvas>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/build/three.min.js"></script>
+    <script src="js/game.js"></script>
+  </body>
+</html>

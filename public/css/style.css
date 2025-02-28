@@ -1,0 +1,398 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Arial", sans-serif;
+}
+
+body {
+  overflow: hidden;
+  background-color: #000;
+  color: #fff;
+}
+
+#login-screen {
+  position: fixed;
+  padding: 50px;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url("../assets/space-background.jpg") center/cover no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+}
+
+.login-container {
+  background-color: rgba(0, 0, 0, 0.8);
+  padding: 2rem;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 800px;
+  text-align: center;
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+  border: 1px solid #0ff;
+}
+
+h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+  color: #0ff;
+  text-shadow: 0 0 10px #0ff;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+  text-align: left;
+}
+
+label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #0ff;
+}
+
+input {
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid #0ff;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+button {
+  background-color: #0ff;
+  color: #000;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  font-size: 1.1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  background-color: #00cccc;
+  box-shadow: 0 0 15px #0ff;
+}
+
+#game-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+#game-canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+#hud {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  z-index: 10;
+  pointer-events: none;
+}
+
+#health-bar {
+  width: 200px;
+  height: 20px;
+  background-color: rgba(0, 0, 0, 0.5);
+  border: 2px solid #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+
+#health-fill {
+  width: 100%;
+  height: 100%;
+  background-color: #0f0;
+  transition: width 0.3s ease;
+}
+
+#score-container {
+  font-size: 1.2rem;
+  color: #fff;
+  text-shadow: 0 0 5px #000;
+  margin-bottom: 10px;
+}
+
+#leaderboard {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 200px;
+  background-color: rgba(0, 0, 0, 0.5);
+  border: 1px solid #0ff;
+  border-radius: 5px;
+  padding: 10px;
+  color: #fff;
+  z-index: 10;
+}
+
+#leaderboard h3 {
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 10px;
+  color: #0ff;
+  font-size: 1.2rem;
+}
+
+.leaderboard-entry {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5px;
+  padding: 3px 5px;
+  border-radius: 3px;
+}
+
+.leaderboard-entry.current-player {
+  background-color: rgba(0, 255, 255, 0.3);
+}
+
+#kill-feed {
+  position: absolute;
+  top: 250px;
+  right: 20px;
+  width: 300px;
+  text-align: right;
+  z-index: 10;
+}
+
+.kill-message {
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 5px 10px;
+  border-radius: 5px;
+  margin-bottom: 5px;
+  animation: fadeOut 4s forwards;
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  70% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.controls-info {
+  margin-top: 0;
+  text-align: left;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 5px;
+  padding: 1rem;
+  border: 1px solid rgba(0, 255, 255, 0.3);
+  position: sticky;
+  top: 0;
+}
+
+.controls-info h3 {
+  color: #0ff;
+  margin-bottom: 0.8rem;
+  font-size: 1.1rem;
+  text-align: center;
+}
+
+.controls-info ul {
+  list-style-type: none;
+}
+
+.controls-info li {
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.controls-info strong {
+  color: #0ff;
+  display: inline-block;
+  min-width: 60px;
+}
+
+/* Faction selection styles */
+.faction-selection,
+.ship-selection {
+  margin: 1.5rem 0;
+  text-align: center;
+}
+
+.faction-selection h3,
+.ship-selection h3 {
+  color: #0ff;
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+}
+
+.faction-options {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.faction-option {
+  flex: 1;
+  background-color: rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(0, 255, 255, 0.3);
+  border-radius: 5px;
+  padding: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.faction-option:hover {
+  background-color: rgba(0, 255, 255, 0.1);
+  transform: translateY(-5px);
+}
+
+.faction-option.selected {
+  background-color: rgba(0, 255, 255, 0.2);
+  border-color: #0ff;
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+}
+
+.faction-logo {
+  width: 60px;
+  height: 60px;
+  margin-bottom: 0.5rem;
+}
+
+.faction-option h4 {
+  color: #0ff;
+  margin-bottom: 0.5rem;
+}
+
+.faction-option p {
+  font-size: 0.8rem;
+  color: #ccc;
+}
+
+/* Ship selection styles */
+.ship-options {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.ship-option {
+  flex: 1;
+  background-color: rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(0, 255, 255, 0.3);
+  border-radius: 5px;
+  padding: 0.8rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.ship-option:hover {
+  background-color: rgba(0, 255, 255, 0.1);
+  transform: translateY(-5px);
+}
+
+.ship-option.selected {
+  background-color: rgba(0, 255, 255, 0.2);
+  border-color: #0ff;
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+}
+
+.ship-image {
+  width: 80px;
+  height: 80px;
+  margin-bottom: 0.5rem;
+  object-fit: contain;
+}
+
+.ship-option h4 {
+  color: #0ff;
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+}
+
+.ship-stats {
+  list-style-type: none;
+  text-align: left;
+  font-size: 0.8rem;
+}
+
+.ship-stats li {
+  margin-bottom: 0.3rem;
+}
+
+/* Team scores in leaderboard */
+.team-scores {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid rgba(0, 255, 255, 0.3);
+}
+
+.team-score {
+  display: flex;
+  justify-content: space-between;
+  width: 48%;
+  padding: 0.3rem 0.5rem;
+  border-radius: 3px;
+}
+
+.team-score.rebels {
+  background-color: rgba(0, 100, 255, 0.3);
+}
+
+.team-score.empire {
+  background-color: rgba(255, 0, 0, 0.3);
+}
+
+.team-name {
+  font-size: 0.9rem;
+}
+
+.team-points {
+  font-weight: bold;
+  color: #0ff;
+}
+
+#leaderboard h4 {
+  color: #0ff;
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+  text-align: center;
+}
+
+/* Menu layout styles */
+.menu-layout {
+  display: flex;
+  gap: 1.5rem;
+  align-items: flex-start;
+}
+
+.menu-main {
+  flex: 3;
+}
+
+.menu-side {
+  flex: 1;
+}
+
+/* Responsive layout for small screens */
+@media (max-width: 768px) {
+  .menu-layout {
+    flex-direction: column;
+  }
+
+  .login-container {
+    max-width: 400px;
+  }
+}
