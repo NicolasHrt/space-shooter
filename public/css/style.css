@@ -396,3 +396,58 @@ button:hover {
     max-width: 400px;
   }
 }
+
+#missile-cooldown {
+  width: 200px;
+  height: 10px;
+  background-color: rgba(0, 0, 0, 0.5);
+  border: 2px solid #ff9900;
+  border-radius: 5px;
+  overflow: hidden;
+  margin-top: 5px;
+}
+
+#missile-fill {
+  width: 0%;
+  height: 100%;
+  background-color: #ff9900;
+  transition: width 0.1s linear;
+}
+
+#game-controls {
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  border: 1px solid #0ff;
+  border-radius: 5px;
+  padding: 15px;
+  color: #fff;
+  z-index: 10;
+  min-width: 200px;
+}
+
+#game-controls h3 {
+  color: #0ff;
+  margin-bottom: 10px;
+  font-size: 1.1rem;
+  text-align: center;
+}
+
+.control-group {
+  margin-bottom: 10px;
+}
+
+.control-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5px;
+  font-size: 0.9rem;
+}
+
+.control-key {
+  color: #0ff;
+  font-weight: bold;
+  min-width: 60px;
+}

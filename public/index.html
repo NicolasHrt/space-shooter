@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Space Shooter</title>
     <link rel="stylesheet" href="css/style.css" />
+    <link rel="icon" type="image/x-icon" href="assets/favicon.png" />
   </head>
   <body>
     <div id="login-screen">
@@ -131,6 +132,34 @@
           <div id="health-fill"></div>
         </div>
         <div id="score-container">Score: <span id="score">0</span></div>
+        <div id="missile-cooldown">
+          <div id="missile-fill"></div>
+        </div>
+      </div>
+      <div id="game-controls">
+        <h3>Commandes</h3>
+        <div class="control-group">
+          <div class="control-item">
+            <span class="control-key">ZQSD</span>
+            <span>Déplacement</span>
+          </div>
+          <div class="control-item">
+            <span class="control-key">A/E</span>
+            <span>Monter/Descendre</span>
+          </div>
+          <div class="control-item">
+            <span class="control-key">Flèches</span>
+            <span>Rotation</span>
+          </div>
+          <div class="control-item">
+            <span class="control-key">Espace</span>
+            <span>Tirer (laser)</span>
+          </div>
+          <div class="control-item">
+            <span class="control-key">C</span>
+            <span>Missile guidé</span>
+          </div>
+        </div>
       </div>
       <div id="leaderboard">
         <h3>Classement</h3>

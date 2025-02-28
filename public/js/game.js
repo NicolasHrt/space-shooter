@@ -122,6 +122,7 @@ const playerNameInput = document.getElementById("player-name");
 const startButton = document.getElementById("start-button");
 const healthFill = document.getElementById("health-fill");
 const scoreElement = document.getElementById("score");
+const missileFill = document.getElementById("missile-fill");
 const killFeed = document.getElementById("kill-feed");
 const leaderboardEntries = document.getElementById("leaderboard-entries");
 const factionOptions = document.querySelectorAll(".faction-option");
@@ -1956,7 +1957,20 @@ function updatePlayerMovement() {
     ) {
       createMissile(playerShip.position.clone(), playerShip.quaternion.clone());
       playerShip.lastMissile = currentTime;
+      // Reset missile cooldown bar
+      missileFill.style.width = "0%";
+    } else {
+      // Update missile cooldown bar
+      const cooldownProgress =
+        ((currentTime - playerShip.lastMissile) / stats.missileRate) * 100;
+      missileFill.style.width = `${Math.min(cooldownProgress, 100)}%`;
     }
+  } else if (playerShip.lastMissile) {
+    // Continue updating missile cooldown bar even when not pressing the button
+    const currentTime = Date.now();
+    const cooldownProgress =
+      ((currentTime - playerShip.lastMissile) / stats.missileRate) * 100;
+    missileFill.style.width = `${Math.min(cooldownProgress, 100)}%`;
   }
 
   // Update camera position
