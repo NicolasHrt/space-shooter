@@ -135,6 +135,16 @@ const teamScoreElements = {
   empire: document.querySelector(".team-score.empire .team-points"),
 };
 
+// Create crosshair element
+const crosshair = document.createElement("div");
+crosshair.id = "crosshair";
+crosshair.innerHTML = `
+  <div class="crosshair-circle"></div>
+  <div class="crosshair-line horizontal"></div>
+  <div class="crosshair-line vertical"></div>
+`;
+gameContainer.appendChild(crosshair);
+
 // Create pointer lock notification element
 const pointerLockNotification = document.createElement("div");
 pointerLockNotification.id = "pointer-lock-notification";
@@ -147,74 +157,17 @@ pointerLockNotification.innerHTML = `
 `;
 document.body.appendChild(pointerLockNotification);
 
-// Add CSS for pointer lock notification
-const pointerLockStyle = document.createElement("style");
-pointerLockStyle.textContent = `
-  #pointer-lock-notification {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
-    z-index: 1000;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-  }
-  
-  .notification-content {
-    background-color: rgba(30, 30, 30, 0.9);
-    border: 2px solid #ffcc00;
-    border-radius: 10px;
-    padding: 20px;
-    text-align: center;
-    color: #fff;
-    max-width: 400px;
-    animation: pulse 1.5s infinite;
-  }
-  
-  .notification-content h2 {
-    color: #ffcc00;
-    margin-top: 0;
-  }
-  
-  @keyframes pulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.05); }
-    100% { transform: scale(1); }
-  }
+// Add game instructions
+const instructionsElement = document.createElement("div");
+instructionsElement.className = "game-instructions";
+instructionsElement.innerHTML = `
+  <h3>Contrôles:</h3>
+  <p>ZQSD / WASD: Déplacement</p>
+  <p>Flèches: Rotation</p>
+  <p>Espace: Tirer (laser)</p>
+  <p>M: Lancer un missile guidé</p>
 `;
-document.head.appendChild(pointerLockStyle);
-
-// Add CSS for game instructions
-const style = document.createElement("style");
-style.textContent = `
-  .game-instructions {
-    background-color: rgba(0, 0, 0, 0.7);
-    border: 1px solid #444;
-    border-radius: 5px;
-    padding: 15px;
-    margin-top: 20px;
-    color: #fff;
-    max-width: 400px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  
-  .game-instructions h3 {
-    color: #ffcc00;
-    margin-top: 0;
-    text-align: center;
-  }
-  
-  .game-instructions p {
-    margin: 5px 0;
-    font-size: 14px;
-  }
-`;
-document.head.appendChild(style);
+loginScreen.appendChild(instructionsElement);
 
 // Event listeners
 startButton.addEventListener("click", startGame);
@@ -232,18 +185,6 @@ factionOptions.forEach((option) => {
 shipOptions.forEach((option) => {
   option.addEventListener("click", selectShip);
 });
-
-// Add game instructions
-const instructionsElement = document.createElement("div");
-instructionsElement.className = "game-instructions";
-instructionsElement.innerHTML = `
-  <h3>Contrôles:</h3>
-  <p>ZQSD / WASD: Déplacement</p>
-  <p>Flèches: Rotation</p>
-  <p>Espace: Tirer (laser)</p>
-  <p>M: Lancer un missile guidé</p>
-`;
-loginScreen.appendChild(instructionsElement);
 
 // Add event listeners for pointer lock changes
 document.addEventListener("pointerlockchange", handlePointerLockChange);
