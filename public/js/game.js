@@ -13,7 +13,7 @@ let shouldRelockPointer = false; // Flag to track if pointer lock should be reap
 let pointerLockLost = false; // Flag to track if pointer lock was lost
 let playerFaction = ""; // "rebels" or "empire"
 let playerShipType = ""; // The type of ship selected
-let enemyIndicator; // Arrow pointing to the nearest enemy
+let hitMarker; // Hit marker element
 let shipStats = {
   // Rebel ships
   xwing: {
@@ -144,6 +144,60 @@ crosshair.innerHTML = `
   <div class="crosshair-line vertical"></div>
 `;
 gameContainer.appendChild(crosshair);
+
+// Create hit marker element
+const hitMarkerElement = document.createElement("div");
+hitMarkerElement.id = "hit-marker";
+hitMarkerElement.innerHTML = `
+  <div class="hit-marker-line top-left"></div>
+  <div class="hit-marker-line top-right"></div>
+  <div class="hit-marker-line bottom-left"></div>
+  <div class="hit-marker-line bottom-right"></div>
+`;
+hitMarkerElement.style.display = "none";
+gameContainer.appendChild(hitMarkerElement);
+
+// Add CSS styles for hit marker
+const hitMarkerStyle = document.createElement("style");
+hitMarkerStyle.textContent = `
+  #hit-marker {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 30px;
+    height: 30px;
+    pointer-events: none;
+    z-index: 1000;
+  }
+  .hit-marker-line {
+    position: absolute;
+    background-color: #ffffff;
+    width: 12px;
+    height: 2px;
+  }
+  .hit-marker-line.top-left {
+    top: 10px;
+    left: 0;
+    transform: rotate(45deg);
+  }
+  .hit-marker-line.top-right {
+    top: 10px;
+    right: 0;
+    transform: rotate(-45deg);
+  }
+  .hit-marker-line.bottom-left {
+    bottom: 10px;
+    left: 0;
+    transform: rotate(-45deg);
+  }
+  .hit-marker-line.bottom-right {
+    bottom: 10px;
+    right: 0;
+    transform: rotate(45deg);
+  }
+`;
+document.head.appendChild(hitMarkerStyle);
 
 // Create pointer lock notification element
 const pointerLockNotification = document.createElement("div");
@@ -665,9 +719,6 @@ function createPlayerShip() {
   // Position the camera behind the ship
   camera.position.set(0, 2, 10);
   camera.lookAt(playerShip.position);
-
-  // Create enemy indicator arrow
-  createEnemyIndicator();
 }
 
 // Create an arrow to indicate the nearest enemy
@@ -1452,6 +1503,9 @@ function updateLasers() {
           scene.remove(laser.mesh);
           lasers.splice(i, 1);
 
+          // Show hit marker
+          showHitMarker();
+
           // Notify the server
           if (socket) {
             socket.emit("player-hit", {
@@ -1577,6 +1631,9 @@ function updateMissiles() {
           // Hit detected
           scene.remove(missile.mesh);
           missiles.splice(i, 1);
+
+          // Show hit marker
+          showHitMarker();
 
           // Notify the server
           if (socket) {
@@ -1948,7 +2005,6 @@ function animate() {
       updatePlayerMovement();
       updateLasers();
       updateMissiles();
-      updateEnemyIndicator();
 
       // Rotate asteroids slowly for visual effect
       asteroids.forEach((asteroid) => {
@@ -2285,4 +2341,15 @@ function requestPointerLock() {
     document.body.requestPointerLock();
     shouldRelockPointer = false;
   }
+}
+
+// Show hit marker when player hits an enemy
+function showHitMarker() {
+  // Show the hit marker
+  hitMarkerElement.style.display = "block";
+
+  // Hide it after a short delay
+  setTimeout(() => {
+    hitMarkerElement.style.display = "none";
+  }, 100);
 }
