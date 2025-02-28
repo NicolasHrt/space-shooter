@@ -17,77 +17,77 @@ let enemyIndicator; // Arrow pointing to the nearest enemy
 let shipStats = {
   // Rebel ships
   xwing: {
-    speed: 0.6,
+    speed: 1.0, // Was 0.6
     turnRate: 0.035,
-    fireRate: 400,
+    fireRate: 250, // Was 400
     laserDamage: 15,
     health: 100,
-    color: 0xff0000, // Red lasers
+    color: 0xff0000,
     model: "xwing",
-    missileRate: 2000, // Missile cooldown in ms
-    missileDamage: 40, // Missile damage
-    scale: 1.8, // Increased ship scale
+    missileRate: 1500, // Was 2000
+    missileDamage: 40,
+    scale: 1.8,
   },
   ywing: {
-    speed: 0.4,
+    speed: 0.7, // Was 0.4
     turnRate: 0.025,
-    fireRate: 800,
+    fireRate: 500, // Was 800
     laserDamage: 25,
     health: 150,
-    color: 0xff0000, // Red lasers
+    color: 0xff0000,
     model: "ywing",
-    missileRate: 3000,
+    missileRate: 2000, // Was 3000
     missileDamage: 60,
-    scale: 2.0, // Increased ship scale
+    scale: 2.0,
   },
   awing: {
-    speed: 0.8,
+    speed: 1.2, // Was 0.8
     turnRate: 0.045,
-    fireRate: 300,
+    fireRate: 200, // Was 300
     laserDamage: 10,
     health: 80,
-    color: 0xff0000, // Red lasers
+    color: 0xff0000,
     model: "awing",
-    missileRate: 2500,
+    missileRate: 2000, // Was 2500
     missileDamage: 35,
-    scale: 1.7, // Increased ship scale
+    scale: 1.7,
   },
   // Empire ships
   tiefighter: {
-    speed: 0.7,
+    speed: 1.1, // Was 0.7
     turnRate: 0.04,
-    fireRate: 400,
+    fireRate: 250, // Was 400
     laserDamage: 12,
     health: 90,
-    color: 0x00ff00, // Green lasers
+    color: 0x00ff00,
     model: "tiefighter",
-    missileRate: 2000,
+    missileRate: 1500, // Was 2000
     missileDamage: 40,
-    scale: 1.8, // Increased ship scale
+    scale: 1.8,
   },
   tieinterceptor: {
-    speed: 0.8,
+    speed: 1.3, // Was 0.8
     turnRate: 0.045,
-    fireRate: 350,
+    fireRate: 200, // Was 350
     laserDamage: 15,
     health: 70,
-    color: 0x00ff00, // Green lasers
+    color: 0x00ff00,
     model: "tieinterceptor",
-    missileRate: 2500,
+    missileRate: 2000, // Was 2500
     missileDamage: 35,
-    scale: 1.7, // Increased ship scale
+    scale: 1.7,
   },
   tiebomber: {
-    speed: 0.4,
+    speed: 0.7, // Was 0.4
     turnRate: 0.025,
-    fireRate: 900,
+    fireRate: 600, // Was 900
     laserDamage: 30,
     health: 140,
-    color: 0x00ff00, // Green lasers
+    color: 0x00ff00,
     model: "tiebomber",
-    missileRate: 3500,
+    missileRate: 2500, // Was 3500
     missileDamage: 70,
-    scale: 2.0, // Increased ship scale
+    scale: 2.0,
   },
 };
 let teamScores = {
