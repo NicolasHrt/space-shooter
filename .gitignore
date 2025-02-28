@@ -22,8 +22,7 @@ npm-debug.log*
 # Build/Distribution
 dist/
 build/
-public/assets/*.jpg
-public/assets/*.png
+
 
 # Cache
 .cache/
